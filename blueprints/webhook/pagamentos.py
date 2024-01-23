@@ -7,6 +7,7 @@ import json
 
 pagamentos = Blueprint('pagamentos', __name__, template_folder='templates')
 
+# é feito de tal dorma que eu cadastro essa rota no Weebhook
 # rota que recebe os webrooks dos pagamentos.
 @pagamentos.route('/webhook-pagamentos', methods=['POST'])
 def webhook():

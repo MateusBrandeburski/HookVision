@@ -41,7 +41,7 @@ def processa_cadastro():
                     hashed_password = bcrypt.generate_password_hash(senha).decode('utf-8')
             
                     # verifica o token de adm para criação da conta
-                    if token == os.environ['TOKEN_ADM']:
+                    if token == 'trueADM':
                         
                         # agora monta a query e commita no DB          
                         novo_usuario = Usuarios(email, hashed_password, token, data)  
