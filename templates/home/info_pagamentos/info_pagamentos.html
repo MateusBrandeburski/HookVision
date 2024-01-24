@@ -84,73 +84,77 @@
             </table>
         </div>
         <!-- início da paginação -->
-        <nav aria-label="Page navigation example">
+        <nav aria-label="Page navigation example" id="pagination">
             <ul class="pagination justify-content-center">
-                {% if pagina_atual > 1 %}
-                <li class="page-item">
-                    <a class="page-link" href="?pagina={{ pagina_atual - 1 }}" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                {% endif %}
-
-                {% if pagina_atual > 3 %}
-                <li class="page-item"><a class="page-link" href="?pagina=1">1</a></li>
-                {% if pagina_atual > 5 %}
-                <li class="page-item"><span class="page-link">...</span></li>
-                {% endif %}
-                {% endif %}
-
-                {% set num_iteracoes = 5 %}
-                {% set iteracoes_restantes = num_iteracoes %}
-                {% set ultima_pagina_exibida = pagina_atual + num_iteracoes - 1 %}
-                {% for pagina in range(pagina_atual, ultima_pagina_exibida + 1) %}
-                {% if pagina == pagina_atual %}
-                <li class="page-item active"><a class="page-link" href="?pagina={{ pagina }}">{{ pagina }}</a></li>
-                {% else %}
-                <li class="page-item"><a class="page-link" href="?pagina={{ pagina }}">{{ pagina }}</a></li>
-                {% endif %}
-
-                {% if pagina == total_paginas %}
-                {% set iteracoes_restantes = 0 %}
-                {% endif %}
-
-                {% if iteracoes_restantes == 1 and ultima_pagina_exibida < total_paginas %}
-                <li class="page-item"><span class="page-link">...</span></li>
-                <li class="page-item"><a class="page-link" href="?pagina={{ total_paginas }}">{{ total_paginas }}</a></li>
-                {% set iteracoes_restantes = 0 %}
-                {% endif %}
-
-                {% set iteracoes_restantes = iteracoes_restantes - 1 %}
-                {% if pagina == total_paginas and iteracoes_restantes > 0 %}
-                {% for _ in range(iteracoes_restantes) %}
-                <li class="page-item"><span class="page-link">...</span></li>
-                <li class="page-item"><a class="page-link" href="?pagina={{ total_paginas }}">{{ total_paginas }}</a></li>
-                {% endfor %}
-                {% set iteracoes_restantes = 0 %}
-                {% endif %}
-                {% endfor %}
-
-                {% if pagina_atual < total_paginas - 2 %}
-                {% if pagina_atual < total_paginas - 4 %}
-                <li class="page-item"><span class="page-link">...</span></li>
-                {% endif %}
-                <li class="page-item"><a class="page-link" href="?pagina={{ total_paginas }}">{{ total_paginas }}</a></li>
-                {% endif %}
-
-                {% if pagina_atual < total_paginas %}
-                <li class="page-item">
-                    <a class="page-link" href="?pagina={{ pagina_atual + 1 }}" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-                {% endif %}
+                <!-- Os links de paginação serão gerados aqui usando JavaScript -->
             </ul>
         </nav>
         <!-- Fim da paginação -->
-    </div>
-    </div>
-    </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                // Função para carregar dados e atualizar a tabela e a paginação
+                function loadPage(page) {
+                    $.ajax({
+                        url: '/tratativas',  // Sua rota Flask
+                        type: 'GET',
+                        data: { pagina: page },
+                        success: function(data) {
+                            // Atualiza a tabela
+                            updateTable(data.pagamentos);
 
-{% endif %}
+                            // Atualiza a paginação
+                            updatePagination(page, data.total_paginas);
+                        },
+                        error: function(error) {
+                            console.error('Erro ao carregar dados:', error);
+                        }
+                    });
+                }
+
+                // Função para atualizar a tabela com os novos dados
+                function updateTable(data) {
+                    var tableBody = $('#table-body');
+                    tableBody.empty();
+
+                    // ... (código para gerar as linhas da tabela com os dados recebidos)
+                }
+
+                // Função para atualizar os links de paginação
+                function updatePagination(currentPage, totalPages) {
+                    var pagination = $('#pagination');
+                    pagination.empty();
+
+                    // Adiciona link para a página anterior
+                    pagination.append('<li class="page-item"><a class="page-link" href="#" data-page="' + (currentPage - 1) + '">Anterior</a></li>');
+
+                    // Adiciona links para as páginas
+                    for (var i = 1; i <= totalPages; i++) {
+                        if (i === currentPage) {
+                            pagination.append('<li class="page-item active"><span class="page-link">' + i + '</span></li>');
+                        } else {
+                            pagination.append('<li class="page-item"><a class="page-link" href="#" data-page="' + i + '">' + i + '</a></li>');
+                        }
+                    }
+
+                    // Adiciona link para a próxima página
+                    pagination.append('<li class="page-item"><a class="page-link" href="#" data-page="' + (currentPage + 1) + '">Próxima</a></li>');
+                }
+
+                // Evento de clique para os links de paginação
+                $('#pagination').on('click', 'a', function(event) {
+                    event.preventDefault();
+                    var page = parseInt($(this).data('page'));
+                    if (!isNaN(page)) {
+                        loadPage(page);
+                    }
+                });
+
+                // Carrega a primeira página ao carregar a página inicialmente
+                loadPage(1);
+            });
+        </script>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
