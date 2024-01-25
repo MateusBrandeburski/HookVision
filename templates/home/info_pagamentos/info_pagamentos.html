@@ -3,77 +3,28 @@
 <div class="p-4">
     <h1 class="display-4 fw-bold text-black p-3 text-white text-center" style="margin-bottom: 50px">Histórico de pagamentos</h1>
     <div>
-        <!-- Mensagem Flash -->
-        <div class="container h3 text-center">
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            <ul id="messages" class="list-unstyled text-center">
-                {% for message in messages %}
-                {% if message %}
-                <li class="alert alert-danger">
-                    <p>{{ message }}</p>
-                </li>
-                {% endif %}
-                {% endfor %}
-            </ul>
-            {% endif %}
-            {% endwith %}
-        </div>
-        <!-- fim Mensagem Flash -->
-        <!-- início da tabela rendeziada com a busca -->
-        {% if filtros %}
         <div class="table-responsive">
-            <table class="table table-striped table-bordered border-black shadow-lg" style="background-color: rgb(255, 255, 255);">
+        <p class="text-white" id="totalRegistros"></p>
+            <table id="tableBody" class="table table-striped table-bordered border-black shadow-lg" style="background-color: rgb(255, 255, 255);">
                 <thead class="thead-default">
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>Status da transação</th>
-                    <th>Status no sistema</th>
-                    <th>Valor</th>
-                    <th>Forma de pagamento</th>
-                    <th>Parcelas</th>
-                    <th>Data e hora</th>
-                </thead>
-                <tbody>
-                    {% for filtro in filtros %}
                     <tr>
-                        <td>{{ filtro.nome }}</td>
-                        <td>{{ filtro.email }}</td>
-                        <td>{{ filtro.status}}</td>
-                        <td>{{ filtro.status_no_sistema}}</td>
-                        <td>{{ filtro.valor }}</td>
-                        <td>{{ filtro.forma_pagamento }}</td>
-                        <td>{{ filtro.parcelas }}</td>
-                        <td>{{ filtro.data }}</td>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Status da transação</th>
+                        <th>Status no sistema</th>
+                        <th>Valor</th>
+                        <th>Forma de pagamento</th>
+                        <th>Parcelas</th>
+                        <th>Data e hora</th>
                     </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-        <!-- fim da tabela rendeziada com a busca -->
-        <!-- início da tabela completa -->
-        {% else %}
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered border-black shadow-lg" style="background-color: rgb(255, 255, 255);">
-                <thead class="thead-default">
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>Status da transação</th>
-                    <th>Status no sistema</th>
-                    <th>Valor</th>
-                    <th>Forma de pagamento</th>
-                    <th>Parcelas</th>
-                    <th>Data e hora</th>
                 </thead>
                 <tbody>
                     {% for pagamento in pagamentos %}
                     <tr>
                         <td>{{ pagamento.nome }}</td>
                         <td>{{ pagamento.email }}</td>
-                        <td>{{ pagamento.status}}</td>
-                        <td>{{ pagamento.status_no_sistema}}</td>
+                        <td>{{ pagamento.status }}</td>
+                        <td>{{ pagamento.status_no_sistema }}</td>
                         <td>{{ pagamento.valor }}</td>
                         <td>{{ pagamento.forma_pagamento }}</td>
                         <td>{{ pagamento.parcelas }}</td>
@@ -83,78 +34,63 @@
                 </tbody>
             </table>
         </div>
-        <!-- início da paginação -->
-        <nav aria-label="Page navigation example" id="pagination">
-            <ul class="pagination justify-content-center">
-                <!-- Os links de paginação serão gerados aqui usando JavaScript -->
-            </ul>
-        </nav>
-        <!-- Fim da paginação -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                // Função para carregar dados e atualizar a tabela e a paginação
-                function loadPage(page) {
-                    $.ajax({
-                        url: '/tratativas',  // Sua rota Flask
-                        type: 'GET',
-                        data: { pagina: page },
-                        success: function(data) {
-                            // Atualiza a tabela
-                            updateTable(data.pagamentos);
-
-                            // Atualiza a paginação
-                            updatePagination(page, data.total_paginas);
-                        },
-                        error: function(error) {
-                            console.error('Erro ao carregar dados:', error);
-                        }
-                    });
-                }
-
-                // Função para atualizar a tabela com os novos dados
-                function updateTable(data) {
-                    var tableBody = $('#table-body');
-                    tableBody.empty();
-
-                    // ... (código para gerar as linhas da tabela com os dados recebidos)
-                }
-
-                // Função para atualizar os links de paginação
-                function updatePagination(currentPage, totalPages) {
-                    var pagination = $('#pagination');
-                    pagination.empty();
-
-                    // Adiciona link para a página anterior
-                    pagination.append('<li class="page-item"><a class="page-link" href="#" data-page="' + (currentPage - 1) + '">Anterior</a></li>');
-
-                    // Adiciona links para as páginas
-                    for (var i = 1; i <= totalPages; i++) {
-                        if (i === currentPage) {
-                            pagination.append('<li class="page-item active"><span class="page-link">' + i + '</span></li>');
-                        } else {
-                            pagination.append('<li class="page-item"><a class="page-link" href="#" data-page="' + i + '">' + i + '</a></li>');
-                        }
-                    }
-
-                    // Adiciona link para a próxima página
-                    pagination.append('<li class="page-item"><a class="page-link" href="#" data-page="' + (currentPage + 1) + '">Próxima</a></li>');
-                }
-
-                // Evento de clique para os links de paginação
-                $('#pagination').on('click', 'a', function(event) {
-                    event.preventDefault();
-                    var page = parseInt($(this).data('page'));
-                    if (!isNaN(page)) {
-                        loadPage(page);
-                    }
-                });
-
-                // Carrega a primeira página ao carregar a página inicialmente
-                loadPage(1);
-            });
-        </script>
-        {% endif %}
+        <div class="text-end">
+            <button class="btn btn-outline-light" id="btnAnterior" disabled>Anterior</button>
+            <button class="btn btn-outline-light" id="btnProximo">Próximo</button>
+        </div>
     </div>
 </div>
+
+<p id="totalRegistros"></p>
+
+
+
+<script>
+  var paginaAtual = 1;
+  var registrosPorPagina = 10;
+  var registros; // Definindo a variável globalmente
+
+  window.onload = function () {
+    registros = document.getElementById("tableBody").getElementsByTagName("tr");
+    document.getElementById("totalRegistros").innerText = "Total de Registros no DB: " + registros.length;
+    exibirPagina(paginaAtual);
+  };
+
+  function exibirPagina(pagina) {
+    for (var i = 0; i < registros.length; i++) {
+      registros[i].style.display = "none";
+    }
+
+    var inicio = (pagina - 1) * registrosPorPagina;
+    var fim = inicio + registrosPorPagina;
+
+    for (var i = inicio; i < fim && i < registros.length; i++) {
+      registros[i].style.display = "";
+    }
+
+    atualizarBotoesNavegacao();
+  }
+
+  function atualizarBotoesNavegacao() {
+    var btnAnterior = document.getElementById("btnAnterior");
+    var btnProximo = document.getElementById("btnProximo");
+
+    btnAnterior.disabled = paginaAtual === 1;
+    btnProximo.disabled = paginaAtual === Math.ceil(registros.length / registrosPorPagina);
+  }
+
+  document.getElementById("btnAnterior").addEventListener("click", function () {
+    if (paginaAtual > 1) {
+      paginaAtual--;
+      exibirPagina(paginaAtual);
+    }
+  });
+
+  document.getElementById("btnProximo").addEventListener("click", function () {
+    if (paginaAtual < Math.ceil(registros.length / registrosPorPagina)) {
+      paginaAtual++;
+      exibirPagina(paginaAtual);
+    }
+  });
+</script>
 {% endblock %}

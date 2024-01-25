@@ -38,3 +38,5 @@ class Usuarios(db.Model):
         self.senha = senha
         self.token = token
         self.data = data
+
+
