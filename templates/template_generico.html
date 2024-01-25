@@ -30,10 +30,9 @@
               </div>
               <!-- início input busca email -->
               <div class="col my-auto">
-                  <form class="d-flex" method='POST' action='/filtro-por-email'>
-                      <input class="form-control me-2" type="search" id="email" name="email" placeholder="Digite o email" aria-label="Search">
-                      <button class="btn btn-primary" type="submit">Buscar</button>
-                  </form>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" id="textoBusca" placeholder="Digite para buscar" aria-label="Search" onkeyup="filtrarRegistros()">
+                </form>
               </div>
               <!-- fim input busca email -->  
           </div>

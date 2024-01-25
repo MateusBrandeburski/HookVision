@@ -30,21 +30,4 @@ def index():
         return render_template('home/info_pagamentos/info_pagamentos.html', pagamentos=dados)
 
 
-@tratativas.route('/filtro-por-email', methods=['GET','POST'])
-def status_completo():
-    
-    # verifica se o usuário está logado.
-    if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        return redirect(url_for('login.index'))
-      
-    else:   
-        email_filtrado = request.form.get('email')
-        filtros = Pagamentos.query.filter_by(email=email_filtrado).all()
-        if filtros:
-            return render_template('home/info_pagamentos/info_pagamentos.html', filtros=filtros)
-        else:
-            flash('Email não encontrado na base de dados!')
-            pagina = int(request.args.get('pagina', 1))
-            return redirect(url_for('tratativas.index'))
-
 

@@ -1,11 +1,12 @@
 {% extends 'template_generico.html' %}
 {% block conteudo %}
 <div class="p-4">
-    <h1 class="display-4 fw-bold text-black p-3 text-white text-center" style="margin-bottom: 50px">Histórico de pagamentos</h1>
+    <h1 id="tituloHistorico" class="display-4 fw-bold text-black p-3 text-white text-center" style="margin-bottom: 50px">Histórico de pagamentos</h1>
     <div>
         <div class="table-responsive">
-        <p class="text-white" id="totalRegistros"></p>
             <table id="tableBody" class="table table-striped table-bordered border-black shadow-lg" style="background-color: rgb(255, 255, 255);">
+            <p class="text-white" id="totalRegistros"></p>
+            <h1 class="display-4 fw-bold text-black p-3 text-white text-center" id="mensagemSemRegistro" style="display: none;">Nenhum registro encontrado.</h1>
                 <thead class="thead-default">
                     <tr>
                         <th>Nome</th>
@@ -41,14 +42,12 @@
     </div>
 </div>
 
-<p id="totalRegistros"></p>
-
-
 
 <script>
   var paginaAtual = 1;
   var registrosPorPagina = 10;
   var registros; // Definindo a variável globalmente
+
 
   window.onload = function () {
     registros = document.getElementById("tableBody").getElementsByTagName("tr");
@@ -93,4 +92,50 @@
     }
   });
 </script>
+<script>
+  function filtrarRegistros() {
+    var textoBuscado = document.getElementById("textoBusca").value.toLowerCase();
+    var registros = document.getElementById("tableBody").getElementsByTagName("tr");
+    var contadorRegistros = 0;
+
+    for (var i = 0; i < registros.length; i++) {
+      var linha = registros[i];
+      var celulas = linha.getElementsByTagName("td");
+      var encontrou = false;
+      for (var j = 0; j < celulas.length; j++) {
+        if (celulas[j].textContent.toLowerCase().includes(textoBuscado)) {
+          encontrou = true;
+          break;
+        }
+      }
+      if (encontrou) {
+        linha.style.display = "";
+        contadorRegistros++;
+      } else {
+        linha.style.display = "none";
+      }
+    }
+
+    var mensagemSemRegistro = document.getElementById("mensagemSemRegistro");
+    var tituloHistorico = document.getElementById("tituloHistorico");
+    var totalRegistros = document.getElementById("totalRegistros");
+    var btnAnterior = document.getElementById("btnAnterior");
+    var btnProximo = document.getElementById("btnProximo");
+    if (contadorRegistros === 0) {
+      mensagemSemRegistro.style.display = "";
+      tituloHistorico.style.display = "none";
+      totalRegistros.style.display = "none";
+      btnAnterior.style.display = "none";
+      btnProximo.style.display = "none";
+    } else {
+      mensagemSemRegistro.style.display = "none";
+      tituloHistorico.style.display = "";
+      totalRegistros.style.display = "";
+      btnAnterior.style.display = "";
+      btnProximo.style.display = "";
+    }
+  }
+</script>
+
+
 {% endblock %}
