@@ -13,7 +13,7 @@ app.secret_key = ['M4T3usBrnd3']
 
 # conexão com DB por meio do SQLALchemy, coloquei aqui porque eu preciso passar o 'app' como parâmetro e não posso gerar 'cirule_import'.
 def create_app():
-    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://meuusuario:minhasenha@localhost:5430/meubanco"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://root:weebhook-flask@localhost:5430/webhook"
     db.init_app(app)
     return app
 
