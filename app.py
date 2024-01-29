@@ -3,6 +3,7 @@ from blueprints.webhook.pagamentos import pagamentos
 from blueprints.cadastro.cadastro import cadastro
 from blueprints.login.login import login
 from blueprints.home.info_pagamentos.info_pagamentos import tratativas
+from blueprints.home.informacoes.informacoes import informacoes
 from classes.database.database import db
 import os
 
@@ -24,6 +25,7 @@ app.register_blueprint(pagamentos)
 app.register_blueprint(cadastro)
 app.register_blueprint(login)
 app.register_blueprint(tratativas)
+app.register_blueprint(informacoes)
 
 app = create_app()
 if __name__ == '__main__':
