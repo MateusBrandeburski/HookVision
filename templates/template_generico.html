@@ -8,11 +8,11 @@
 <link rel="icon" href="{{ url_for('static', filename='image/favicon.ico') }}">
 
 </head>
-<body class="bd-masthead mb-3" style="background-color:rgb(103, 129, 248)">
+<body class="bd-masthead mb-3" style="background-color: #205e88;">
 <!-- Header -->
-<header>
-  <div class="p-1 text-center bg-white shadow">
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+<header class="bg-white">
+  <div class="p-1 text-center shadow">
+      <nav class="navbar navbar-expand-lg">
           <div class="container-fluid">
               <a class="navbar-brand" href="{{url_for('tratativas.index')}}">Home</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +31,7 @@
               <!-- início input busca email -->
               <div class="col my-auto">
                 <form class="d-flex">
-                    <input class="form-control me-2" type="search" id="textoBusca" placeholder="Digite para buscar" aria-label="Search" onkeyup="filtrarRegistros()">
+                    <input class="form-control me-2" type="search" id="textoBusca" placeholder="Digite qualquer caractere da tabela para buscar" aria-label="Search" onkeyup="filtrarRegistros()">
                 </form>
               </div>
               <!-- fim input busca email -->  

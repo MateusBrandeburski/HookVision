@@ -1,7 +1,5 @@
 {% extends 'login_cadastro_generico.html' %}
 {% block conteudo %}
-
-
 <div class="container p-5" style="margin-top: 50px">
     <div class="row gx-5 align-items-center justify-content-center">
         <div class="col-md-5">
@@ -20,7 +18,7 @@
             {% endif %}
         {% endwith %}
         <!-- fim Mensagem de logado ou não logado -->
-        <h1 class="text-white">Login</h1>
+        <h1 class="text-white text-center">Login</h1>
         <form method="POST" action="/autenticar">
             <p class="text-white">
               <label>Email:</label>
@@ -31,12 +29,18 @@
               <p class="text-white"><button class="btn btn-primary" type="submit">Entrar</button></p>
               <p class="text-white btn btn-primary"><a class="text-white" style="text-decoration: none;" href="{{url_for('cadastro.register')}}">Cadastro</a></p>
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title mb-4 font-weight-bold text-primary">Informações:</h5>
+
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button style="font-family: 'Roboto Slab', serif;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Começe por aqui !
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
                     <p class="card-text mb-3">Serviço criado para visualizar os registros enviados pela API Webhook (PHP - Lumen).</p>
                     <p class="card-text mb-3">Os registros são salvos no banco de dados e podem ser visualizados ao fazer login na página.</p>
-
                     <div class="mb-3">
                         <span class="font-weight-bold text-secondary">Login:</span>
                         <div class="bg-light p-2 rounded">
@@ -44,13 +48,25 @@
                             Senha: <span class="p-1 rounded">Developer12@</span>
                         </div>
                     </div>
-
-                    <p class="card-text">O sistema de login está funcionando, use o token <span class="text-white bg-success p-1 rounded">trueADM</span> para criar.</p>
+                  </div>
                 </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button style="font-family: 'Roboto Slab', serif;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Informações sobre o cadastro
+                  </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                   <p class="card-text">O sistema de login está funcionando, use o token <span class="text-white bg-secondary p-1 rounded">trueADM</span> para criar.</p>
+                  </div>
+                </div>
+              </div>
             </div>
+
         </form>
         </div>
     </div>
 </div>
-
 {% endblock %}
