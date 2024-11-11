@@ -5,19 +5,17 @@ from blueprints.login.login import login
 from blueprints.home.info_pagamentos.info_pagamentos import tratativas
 from blueprints.home.informacoes.informacoes import informacoes
 from classes.database.database import db
-import os
+from config import Config
+
 
 app = Flask(__name__)
 
-# secret_key é para o cookie do navegador
-app.secret_key = ['M4T3usBrnd3']
+# secret_key
+app.secret_key = Config.SECRET_KEY
 
 # conexão com DB por meio do SQLALchemy, coloquei aqui porque eu preciso passar o 'app' como parâmetro e não posso gerar 'cirule_import'.
 def create_app():
-    app.config['SQLALCHEMY_DATABASE_URI'] ="postgresql://meuusuario:minhasenha@localhost:5430/meubanco"
-    # "postgresql://meuusuario:minhasenha@localhost:5430/meubanco"
-    # "postgresql://mue:nununflask12@meu-postgresql:5432/webhook"
-
+    app.config['SQLALCHEMY_DATABASE_URI'] = Config.SQLALCHEMY_DATABASE_URI
     db.init_app(app)
     return app
 

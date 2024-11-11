@@ -5,7 +5,7 @@ __pycache__/
 
 # C extensions
 *.so
-
+.env
 # Distribution / packaging
 .Python
 build/
@@ -55,7 +55,7 @@ coverage.xml
 # Translations
 *.mo
 *.pot
-
+.config.py
 # Django stuff:
 *.log
 local_settings.py
@@ -68,7 +68,7 @@ instance/
 
 # Scrapy stuff:
 .scrapy
-
+config.py
 # Sphinx documentation
 docs/_build/
 
