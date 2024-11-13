@@ -1,0 +1,17 @@
+
+.container1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 5px;
+    padding: 0;
+}
+
+.canto-esquerdo {
+  align-items: end;
+}
+
+.canto-direito {
+  width: 50%;
+  justify-self: end;
+}
+
