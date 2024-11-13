@@ -7,16 +7,15 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 <link rel="icon" href="{{ url_for('static', filename='image/webhook-logo2.jpg') }}">
-
 </head>
 <body class="bd-masthead mb-3" style="background-color: #205e88;">
 <!-- Header -->
 <header class="bg-white p-1 shadow">
       <nav class="container1">
         <div class="canto-esquerdo">
-            <a class="nav-link" href="{{url_for('informacoes.index')}}" target="_blank">Informações</a>
         </div>
-        <div class="canto-direito">
+        <div class="canto-direito-nav">
+            <a class="nav-link" href="{{url_for('informacoes.index')}}" target="_blank">Informações</a>
             <a class="nav-link text-danger" href="{{url_for('login.logout')}}">Logout</a>
         </div> 
       </nav>
@@ -45,5 +44,7 @@
   </ul>
 </footer>
 <!-- fim dp footer -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="{{ url_for('static', filename='js/graficoPagamentos.js') }}"></script>
 </body>
 </html>

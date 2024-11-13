@@ -2,12 +2,13 @@
 {% block conteudo %}
 <div class="p-4 ">
     <h1 id="tituloHistorico" class="display-4 fw-bold text-black p-3 text-white text-center" style="margin-bottom: 50px">Lista de Transações</h1>
+    <div id="graficoPagamentos"></div>
     <div class="container1">
       <div class="canto-esquerdo">
         <p class="text-white" id="totalRegistros"></p>
       </div>
       <div class="canto-direito">
-       <input class="form-control text-center" type="search" id="textoBusca" placeholder="Digite qualquer caractere da tabela para buscar" aria-label="Search" onkeyup="filtrarRegistros()">
+       <input class="form-control text-center" type="search" id="textoBusca" placeholder="Buscar" aria-label="Search" onkeyup="filtrarRegistros()">
       </div>
     </div>
       <div class="table-responsive">
@@ -45,7 +46,6 @@
           <button class="btn btn-light" id="btnAnterior" disabled>Anterior</button>
           <button class="btn btn-light" id="btnProximo">Próximo</button>
       </div>
-   
 </div>
 
 <!-- paginacao -->
