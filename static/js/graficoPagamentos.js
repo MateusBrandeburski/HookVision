@@ -1,22 +1,34 @@
 
+async function carregarDadosDoGrafico() {
 
-var options = {
-    series: [44, 55, 41],
+  const resposta = await fetch('/grafico-status');
+  const dados = await resposta.json();
+
+
+  const options = {
+    series: [dados.aprovado, dados.reembolsado, dados.recusado],
     chart: {
-    type: 'donut',
-  },
-  responsive: [{
-    breakpoint: 480,
-    options: {
-      chart: {
-        width: 20
-      },
-      legend: {
-        position: 'bottom'
+    width: 380,
+    type: 'pie',
+    },
+    labels: ['Aprovado', 'Reembolsado', 'Recusado'],
+    colors: ['#28a745', '#ffc107', '#dc3545'],
+    responsive: [{
+      breakpoint: 480,
+      options: {
+        chart: {
+          width: 200
+        },
+        legend: {
+          position: 'bottom'
+        }
       }
-    }
-  }]
+    }]
   };
 
-var chart = new ApexCharts(document.querySelector("#graficoPagamentos"), options);
-chart.render();
+  var chart = new ApexCharts(document.querySelector("#chart-status"), options);
+  chart.render();
+
+};
+
+carregarDadosDoGrafico();

@@ -5,6 +5,7 @@ from blueprints.login.login import login
 from blueprints.home.info_pagamentos.info_pagamentos import tratativas
 from blueprints.home.informacoes.informacoes import informacoes
 from classes.database.database import db
+from datetime import timedelta
 from config import Config
 
 
@@ -12,6 +13,7 @@ app = Flask(__name__)
 
 # secret_key
 app.secret_key = Config.SECRET_KEY
+app.permanent_session_lifetime = timedelta(minutes=30)
 
 # conexão com DB por meio do SQLALchemy, coloquei aqui porque eu preciso passar o 'app' como parâmetro e não posso gerar 'cirule_import'.
 def create_app():

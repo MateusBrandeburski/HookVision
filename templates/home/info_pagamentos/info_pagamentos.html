@@ -1,8 +1,21 @@
 {% extends 'template_generico.html' %}
 {% block conteudo %}
 <div class="p-4 ">
-    <h1 id="tituloHistorico" class="display-4 fw-bold text-black p-3 text-white text-center" style="margin-bottom: 50px">Lista de Transações</h1>
-    <div id="graficoPagamentos"></div>
+    <h1 id="tituloHistorico" class="display-4 fw-bold text-black p-3 text-white text-center" style="margin-bottom: 50px">Status das Transações</h1>
+
+    <div class="container-graficos">
+      <div class="grid1">
+        <div class="card-grafico">
+          <div id="chart-status"></div>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="card-grafico">
+          <div id="chart"></div>
+        </div>
+      </div>
+    </div>
+
     <div class="container1">
       <div class="canto-esquerdo">
         <p class="text-white" id="totalRegistros"></p>

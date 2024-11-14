@@ -20,8 +20,24 @@
   justify-content: end;
 }
 
-#graficoPagamentos {
-  width: 300px;
-  height: 300px;
-  margin: auto; /* Centraliza o gráfico */
+
+.container-graficos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 10px; 
+  margin-bottom: 30px;
+  padding: 0;
 }
+
+.grid1, .grid3, .grid4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.card-grafico {
+  background-color: rgb(255, 255, 255);
+  border-radius: 3px;
+} 
+
