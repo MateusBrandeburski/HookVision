@@ -1,17 +1,52 @@
 
-.container1 {
+.logo-nav{
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.nav-link{
+  color: rgb(71, 71, 71);
+}
+
+.title-nav{
+ font-size: 20px;
+}
+
+.container-navbar {
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin: 5px;
     padding: 0;
 }
 
+.container-cabecalho-tabela {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 5px;
+  padding: 0;
+}
+
+.grid-total30{
+  border-radius: 3px;
+  background-color: rgb(255, 255, 255);
+  padding: 7px; /* Espaço interno */
+}
+
 .canto-esquerdo {
-  justify-self: left;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  color: rgb(71, 71, 71);
+  font-weight: bold;
+}
+
+.total-base{
+  all: unset;
 }
 
 .canto-direito {
-  width: 35%;
   justify-self: end;
 }
 
@@ -23,21 +58,37 @@
 
 .container-graficos {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); 
-  gap: 10px; 
+  grid-template-columns: 1fr 1fr 2fr;
+  gap: 20px; 
   margin-bottom: 30px;
   padding: 0;
 }
 
-.grid1, .grid3, .grid4 {
+.grid1{
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 3px;
 }
 
+.grid4{
+  background-color: rgb(255, 255, 255);
+  border-radius: 3px;
+  justify-content: center;
+}
+
+.card-grafico1 {
+  background-color: rgb(255, 255, 255);
+  border-radius: 3px;
+  text-align: center;
+  color: rgb(71, 71, 71);
+  font-weight: bold;
+}
 
 .card-grafico {
   background-color: rgb(255, 255, 255);
   border-radius: 3px;
+
 } 
 

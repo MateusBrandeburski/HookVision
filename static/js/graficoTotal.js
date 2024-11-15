@@ -14,14 +14,11 @@ async function carregarDadosDoGrafico() {
         valores.push(item.total); // Garantimos que estamos usando 'item.total', que contém o número de transações por dia
     });
 
-    console.log("Dates:", dates);  // Verificando se as datas estão corretas
-    console.log("Valores:", valores);  // Verificando se os totais estão corretos
-
     // Configurações do gráfico
     var options = {
         series: [{
             name: 'Transações',
-            data: valores
+            data: valores,
         }],
         chart: {
             type: 'area',
@@ -33,8 +30,11 @@ async function carregarDadosDoGrafico() {
                 autoScaleYaxis: true
             },
             toolbar: {
-                autoSelected: 'zoom'
-            }
+                show: false,
+            },
+            zoom: {
+                enabled: false, // Desabilita o zoom no gráfico
+            },
         },
         dataLabels: {
             enabled: false
@@ -44,7 +44,7 @@ async function carregarDadosDoGrafico() {
         },
         title: {
             text: 'Movimento de Transações',
-            align: 'left'
+            align: 'center'
         },
         fill: {
             type: 'gradient',

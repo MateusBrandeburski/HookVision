@@ -1,0 +1,81 @@
+from classes.database.database import Pagamentos
+from sqlalchemy import func, extract
+from datetime import timedelta, datetime
+
+class Graficos:
+    
+    @staticmethod
+    def grafico_status():
+        data_inicial = datetime.now() - timedelta(days=30)
+        
+        acesso_bloqueado = Pagamentos.query.filter_by(status_no_sistema="acesso_bloqueado")\
+            .filter(func.to_timestamp(Pagamentos.data, 'DD/MM/YYYY HH24:MI') >= data_inicial).count()
+        acesso_liberado = Pagamentos.query.filter_by(status_no_sistema="acesso_liberado")\
+            .filter(func.to_timestamp(Pagamentos.data, 'DD/MM/YYYY HH24:MI') >= data_inicial).count()
+        acesso_negado = Pagamentos.query.filter_by(status_no_sistema="acesso_negado")\
+            .filter(func.to_timestamp(Pagamentos.data, 'DD/MM/YYYY HH24:MI') >= data_inicial).count()
+        
+        resultado = {
+            "acesso_bloqueado": acesso_bloqueado,
+            "acesso_liberado": acesso_liberado,
+            "acesso_negado": acesso_negado
+        }
+        
+        return resultado
+
+    @staticmethod
+    def grafico_total():
+        data_inicial = datetime.now() - timedelta(days=30)
+        
+        result = Pagamentos.query.with_entities(
+            func.date(func.to_timestamp(Pagamentos.data, 'DD/MM/YYYY HH24:MI')).label('data'),
+            func.count(Pagamentos.id).label('quantidade_transacoes')
+        ).filter(func.to_timestamp(Pagamentos.data, 'DD/MM/YYYY HH24:MI') >= data_inicial)\
+         .group_by(func.date(func.to_timestamp(Pagamentos.data, 'DD/MM/YYYY HH24:MI'))).all() 
+        
+        resultado = []
+        
+        for row in result:
+            data_formatada = row.data.strftime('%Y-%m-%d') 
+            resultado.append({
+                "data": data_formatada,
+                "total": row.quantidade_transacoes
+            })
+        
+        return resultado
+
+    @staticmethod
+    def grafico_lucro_perdas():
+        data_inicial = datetime.now() - timedelta(days=30) 
+        resultados = Pagamentos.query.with_entities(
+            Pagamentos.status,
+            func.sum(Pagamentos.valor).label('total_valor')
+        ).filter(
+            func.to_timestamp(Pagamentos.data, 'DD/MM/YYYY HH24:MI') >= data_inicial
+        ).group_by(Pagamentos.status).all()
+
+        resultado = {
+            "reembolsado": 0,
+            "aprovado": 0,
+            "recusado": 0
+        }
+
+        for status, total_valor in resultados:
+            if status == "reembolsado":
+                resultado["reembolsado"] = int(total_valor)
+            elif status == "aprovado":
+                resultado["aprovado"] = int(total_valor)
+            elif status == "recusado":
+                resultado["recusado"] = int(total_valor)
+
+        resultado_formatado = {
+            key: f"{value:,}".replace(",", ".")  
+            for key, value in resultado.items()
+        }
+
+        return resultado_formatado
+    
+
+
+
+    

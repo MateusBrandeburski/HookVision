@@ -11,12 +11,15 @@
 <body class="bd-masthead mb-3" style="background-color: #205e88;">
 <!-- Header -->
 <header class="bg-white p-1 shadow">
-      <nav class="container1">
+      <nav class="container-navbar">
         <div class="canto-esquerdo">
+            <img class="logo-nav" src="{{ url_for('static', filename='image/webhook-logo2.jpg') }}" alt="logo-webhook">
+            <span class="title-nav">HookVision 3.0</span>
+          </a>
         </div>
         <div class="canto-direito-nav">
-            <a class="nav-link" href="{{url_for('informacoes.index')}}" target="_blank">Informações</a>
-            <a class="nav-link text-danger" href="{{url_for('login.logout')}}">Logout</a>
+            <a class="fw-bold nav-link" href="{{url_for('cards.index')}}" target="_blank">Informações</a>
+            <a class="fw-bold nav-link" href="{{url_for('login.logout')}}">Logout</a>
         </div> 
       </nav>
 </header>
@@ -31,7 +34,7 @@
       <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
           <svg class="bi" width="30" height="24"></svg>
       </a>
-      <span class="mb-3 mb-md-0 text-white">© 2023 Mateus Brandeburski Ramos</span>
+      <span class="mb-3 mb-md-0 text-white">© Desenvolvido em 2022 | Atualizado 2024</span>
   </div>
   <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
       <li class="ms-3"><a target="_blank" class="text-muted" href="https://github.com/MateusBrandeburski"><img src="https://img.icons8.com/glyph-neue/30/FFFFFF/github.png"/></a></li>
@@ -43,7 +46,10 @@
 </footer>
 <!-- fim dp footer -->
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<script src="{{ url_for('static', filename='js/graficoPagamentos.js') }}"></script>
-<script src="{{ url_for('static', filename='js/graficoTotal.js') }}"></script>
+<script src="{{ url_for('static', filename='js/graficoPagamentos.js') }}" importance="high"></script>
+<script src="{{ url_for('static', filename='js/graficoTotal.js') }}" importance="high"></script>
+<script src="{{ url_for('static', filename='js/graficoLucroPerdas.js') }}" importance="high"></script>
+<script src="{{ url_for('static', filename='js/api/total30.js') }}" importance="high"></script>
+<script src="{{ url_for('static', filename='js/api/dataTable.js') }}" importance="high"></script>
 </body>
 </html>
