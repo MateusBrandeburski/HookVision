@@ -2,12 +2,11 @@ let search = '';
 let limit = 10;
 let offset = 0;
 
-
 const textoBusca = document.getElementById('textoBusca');
 
 let debounceTimer;
 function fetchPaginatedData() {
-    fetch(`/table?search=${encodeURIComponent(search)}&limit=${limit}&offset=${offset}`)
+    fetch(`/table-autocomplite?search=${encodeURIComponent(search)}&limit=${limit}&offset=${offset}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Erro: ${response.status}`);
@@ -36,7 +35,7 @@ textoBusca.addEventListener('input', (event) => {
     }
 });
 
-
+// Navegação para a próxima página
 function nextPage() {
     offset += limit;
     fetchPaginatedData();
@@ -50,7 +49,7 @@ function prevPage() {
     }
 }
 
-
+// Controla a habilitação do botão "Anterior"
 function togglePrevButton() {
     const prevButton = document.querySelector("#prev-button");
     prevButton.disabled = (offset === 0);  // Desabilita o botão se o offset for 0
@@ -60,35 +59,21 @@ function togglePrevButton() {
 function renderTable(data) {
     const tableBody = document.querySelector("#table-body");
     tableBody.innerHTML = "";  // Limpa os dados anteriores
-
-
-    if (data.length === 0) {
-        const row = document.createElement("tr");  // Criando uma linha para a mensagem
-        const cell = document.createElement("td");  // Criando uma célula
-        cell.colSpan = 8;  // Faz a célula ocupar todas as colunas da tabela
-        cell.innerHTML = "Nenhum resultado encontrado";
-        cell.classList.add('no-results');   // Mensagem a ser exibida
-        row.appendChild(cell);  // Adiciona a célula à linha
-        tableBody.appendChild(row);  // Adiciona a linha ao corpo da tabela
-    } else {
-        // Caso contrário, renderiza os dados
-        data.forEach(item => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td>${item.nome}</td>
-                <td>${item.email}</td>
-                <td>${item.status}</td>
-                <td>${item.status_no_sistema}</td>
-                <td>${item.valor}</td>
-                <td>${item.forma_pagamento}</td>
-                <td>${item.parcelas}</td>
-                <td>${item.data}</td>
-            `;
-            tableBody.appendChild(row);
-        });
-    }
+    data.forEach(item => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${item.nome}</td>
+            <td>${item.email}</td>
+            <td>${item.status}</td>
+            <td>${item.status_no_sistema}</td>
+            <td>${item.valor}</td>
+            <td>${item.forma_pagamento}</td>
+            <td>${item.parcelas}</td>
+            <td>${item.data}</td>
+        `;
+        tableBody.appendChild(row);
+    });
 }
-
 
 
 document.querySelector("#next-button").addEventListener("click", nextPage);
