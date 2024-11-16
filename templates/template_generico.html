@@ -4,9 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>HookVision</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" importance="high">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/apexcharts" as="script" importance="high">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 <link rel="icon" href="{{ url_for('static', filename='image/webhook-logo2.jpg') }}">
+
 </head>
 <body class="bd-masthead mb-3" style="background-color: #205e88;">
 <!-- Header -->
@@ -23,7 +26,11 @@
         </div> 
       </nav>
 </header>
-             
+ 
+
+
+
+
 <!-- fim Header -->
 {% block conteudo %}
 {% endblock %}
@@ -34,7 +41,7 @@
       <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
           <svg class="bi" width="30" height="24"></svg>
       </a>
-      <span class="mb-3 mb-md-0 text-white">© Desenvolvido em 2022 | Atualizado 2024</span>
+      <span class="mb-3 mb-md-0 text-white">© Desenvolvido em 2022 | Atualizado 2024 | Mateus Brandeburski</span>
   </div>
   <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
       <li class="ms-3"><a target="_blank" class="text-muted" href="https://github.com/MateusBrandeburski"><img src="https://img.icons8.com/glyph-neue/30/FFFFFF/github.png"/></a></li>

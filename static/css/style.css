@@ -38,6 +38,10 @@
   text-align: center;
 }
 
+.total30{
+  font-size: small;
+}
+
 .canto-esquerdo {
   display: flex;
   justify-content: left;
@@ -48,6 +52,7 @@
 
 .total-base{
   all: unset;
+  font-size: small;
 }
 
 .canto-direito {

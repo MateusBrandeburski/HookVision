@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Santa Animation</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+      height: 100vh; /* Garantir que o body ocupe a altura total */
+    }
+
+    .controls {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 10px;
+      border-radius: 5px;
+      font-family: Arial, sans-serif;
+      z-index: 10;
+    }
+
+    /* Centraliza as divs */
+    .centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Black div in the center */
+    .black-div {
+      width: 200px;
+      height: 200px;
+      background-color: black;
+      z-index: 3; /* Mais em frente */
+    }
+
+    /* Another background element to show the layering */
+    .blue-div {
+      width: 250px;
+      height: 250px;
+      background-color: blue;
+      z-index: 2; /* Abaixo da black-div */
+    }
+
+    /* GIF animation */
+    .gif {
+      position: absolute;
+      animation: fly-reverse 8s linear;
+      display: none; /* Inicialmente escondido */
+      z-index: 1; /* GIF fica atrás das divs */
+    }
+
+    @keyframes fly-reverse {
+      0% {
+        left: 80vw; /* Começa fora da tela à direita */
+        top: 50vh;  /* Posição inicial vertical */
+        opacity: 0;
+      }
+      25% {
+        top: 40vh;  /* Sobe um pouco */
+        opacity: 1;
+      }
+      50% {
+        left: 50vw; /* Passa pelo centro horizontal */
+        top: 60vh;  /* Desce um pouco */
+        opacity: 1;
+      }
+      75% {
+        top: 40vh;  /* Sobe novamente */
+        opacity: 1;
+      }
+      100% {
+        left: -100px; /* Sai da tela pela esquerda */
+        top: 50vh;  /* Retorna à posição inicial vertical */
+        opacity: 0; /* Fica invisível */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <label>
+      <input type="checkbox" id="toggle-animation">
+      Desativar animação
+    </label>
+  </div>
+
+  <!-- Centraliza as divs -->
+  <div class="centered">
+    <div class="blue-div"></div> <!-- Blue div as a lower layer -->
+    <div class="black-div"></div> <!-- Black div in the center -->
+  </div>
+
+  <!-- Santa sleigh GIF that should pass behind the divs -->
+  <img id="santa" src="santa-sleigh-1.gif" alt="Santa Sleigh" class="gif">
+
+  <script>
+    let animationEnabled = true; // Controle global para a animação
+
+    // Verifica se a data está no intervalo permitido
+    function isInAllowedDateRange() {
+      const now = new Date();
+      const start = new Date(now.getFullYear(), 10, 15); // 15 de novembro
+      const end = new Date(now.getFullYear(), 11, 16);  // 16 de dezembro
+      return now >= start && now <= end;
+    }
+
+    // Exibe o GIF com animação
+    function showSanta() {
+      const santa = document.getElementById('santa');
+      if (!santa || !animationEnabled) return;
+
+      if (isInAllowedDateRange()) {
+        santa.style.display = 'block'; // Mostra o GIF
+        santa.style.animation = 'none'; // Reseta a animação
+        void santa.offsetWidth; // Força o reflow para reiniciar a animação
+        santa.style.animation = 'fly-reverse 8s linear'; // Aplica novamente
+        setTimeout(() => {
+          santa.style.display = 'none'; // Esconde após a animação
+        }, 8000); // Duração da animação
+      } else {
+        alert("Nenhuma animação para esse período.");
+      }
+    }
+
+    // Exibe inicialmente e depois a cada 20 segundos
+    if (isInAllowedDateRange()) {
+      showSanta(); // Exibe a primeira vez
+      setInterval(showSanta, 20000); // Repete a cada 20 segundos
+    }
+
+    // Listener para o controle do checkbox
+    document.getElementById('toggle-animation').addEventListener('change', (event) => {
+      animationEnabled = !event.target.checked; // Inverte o estado baseado no checkbox
+      const santa = document.getElementById('santa');
+      
+      if (!animationEnabled) {
+        santa.style.display = 'none'; // Esconde imediatamente se a animação for desativada
+      } else if (isInAllowedDateRange()) {
+        showSanta(); // Exibe imediatamente quando reativado e estiver dentro do intervalo
+      } else {
+        alert("Nenhuma animação para esse período.");
+      }
+    });
+  </script>
+</body>
+</html>

@@ -3,35 +3,7 @@ from sqlalchemy import func, extract
 from datetime import timedelta, datetime
 
 class Tabela:
-    
-    @staticmethod
-    def tabela_paginada(limit, offset):
-        pagamentos = (
-            Pagamentos.query
-            .limit(limit)
-            .offset(offset)
-            .all()
-        )
-
-        dados = [{
-                "nome": pagamento.nome,
-                "email": pagamento.email,
-                "status": pagamento.status,
-                "status_no_sistema": pagamento.status_no_sistema,
-                "valor": pagamento.valor,
-                "forma_pagamento": pagamento.forma_pagamento,
-                "parcelas": pagamento.parcelas,
-                "data": pagamento.data
-                  } for pagamento in pagamentos]
-        
-        return dados
-        
-    
-    @staticmethod
-    def total_base():
-        pass
-    
-    
+  
     @staticmethod
     def search_auto_complite(search_term, limit, offset):
         search_term = f"%{search_term.lower()}%"
@@ -58,9 +30,3 @@ class Tabela:
         } for r in result]
 
         return dados
-    
-    
-    @staticmethod
-    def total_ultimos_30_dias():
-        pass
-    
