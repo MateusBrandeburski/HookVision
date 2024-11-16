@@ -21,43 +21,16 @@
     padding: 0;
 }
 
-.container-cabecalho-tabela {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin-bottom: 5px;
-  padding: 0;
-}
-
-.grid-total30{
-  border-radius: 3px;
-  background-color: rgb(255, 255, 255);
-  padding: 7px; /* Espaço interno */
-}
-
 .no-results{
   text-align: center;
 }
 
-.total30{
-  font-size: small;
-}
-
-.canto-esquerdo {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  color: rgb(71, 71, 71);
-  font-weight: bold;
-}
 
 .total-base{
   all: unset;
   font-size: small;
 }
 
-.canto-direito {
-  justify-self: end;
-}
 
 .canto-direito-nav{
   display: flex; /* Faz os itens ficare um ao lado do outro */  
@@ -101,3 +74,27 @@
 
 } 
 
+
+/* itens acima da tabela */
+.container-cabecalho-tabela {
+  display: flex; 
+  justify-content: space-between; 
+  margin-bottom: 5px;
+  padding: 0;
+}
+
+.card-total-registros{
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 3px;
+  color: rgb(71, 71, 71);
+  font-weight: bold;
+}
+
+.img-db{
+  width: 30px;
+  height: 30px;
+}

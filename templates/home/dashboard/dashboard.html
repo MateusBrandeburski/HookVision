@@ -25,16 +25,15 @@
 
     <div class="container-cabecalho-tabela">
 
-      <div class="canto-esquerdo">
-        <div class="grid-total30 shadow">
-             <p class="total-base total30">Registros: <span class="total30" id="total30"></span></p>
-        </div>
+      <div class="card-total-registros shadow"  style="background-color: aliceblue;">
+        <img class="img-db" src="{{ url_for('static', filename='image/8686102.png') }}" alt="teste">
+            <span class="m-2" id="total30" style="background-color: aliceblue;"></span>
       </div>
+  
 
-      <div class="canto-direito shadow">
+      <div class="shadow m-2">
           <input class="form-control text-center" type="search" id="textoBusca" placeholder="Buscar" aria-label="Search">
       </div>
-
     </div>
     
       <div class="table-responsive" style="border-radius: 3px;">
