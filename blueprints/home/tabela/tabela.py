@@ -9,7 +9,9 @@ tratativas = Blueprint('tratativas', __name__, template_folder='template')
 def index():
     if not session.get('usuario_logado', None):
         return redirect(url_for('login.index'))
-    return render_template('home/dashboard/dashboard.html')
+    
+    language = session.get('lang')
+    return render_template('home/dashboard/dashboard.html', lang=language)
 #------------------------------------------------------------------#
 
 

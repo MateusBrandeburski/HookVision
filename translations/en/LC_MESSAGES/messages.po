@@ -67,7 +67,6 @@ msgstr "Previous"
 msgid "Próximo"
 msgstr "Next"
 
-
 msgid "desenvolvido"
 msgstr "Developed in"
 

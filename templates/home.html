@@ -24,30 +24,45 @@
         <div class="canto-direito-nav">
 
           <div class="btn-group">
-            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              Language
-            </button>
+            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="languageButton"></button>
             <ul class="dropdown-menu">
               <li>
                 <form action="{{ url_for('langs.change_language') }}" method="POST">
-                  <button type="submit" name="language" value="pt_BR" class="dropdown-item {% if g.locale == 'pt_BR' %}active{% endif %}">Português</button>
+                  <button type="submit" name="language" value="pt_BR" class="dropdown-item {% if g.locale == 'pt_BR' %}active{% endif %}" onclick="changeButtonText('Português')">Português</button>
                 </form>
               </li>
               <li>
                 <form action="{{ url_for('langs.change_language') }}" method="POST">
-                  <button type="submit" name="language" value="en" class="dropdown-item {% if g.locale == 'en' %}active{% endif %}">English</button>
+                  <button type="submit" name="language" value="en" class="dropdown-item {% if g.locale == 'en' %}active{% endif %}" onclick="changeButtonText('English')">English</button>
                 </form>
               </li>
             </ul>
           </div>
-        
 
-            <a class="fw-bold nav-link" href="{{url_for('cards.index')}}" target="_blank">{{ _("info")}}</a>
-            <a class="fw-bold nav-link" href="{{url_for('login.logout')}}">{{_("sair")}}</a>
+          <a class="fw-bold nav-link" href="{{url_for('cards.index')}}" target="_blank">{{ _("info")}}</a>
+          <a class="fw-bold nav-link" href="{{url_for('login.logout')}}">{{_("sair")}}</a>
 
         </div> 
       </nav>
 </header>
+
+<script>
+  // Função para alterar o texto do botão
+  function changeButtonText(newText) {
+    const button = document.getElementById('languageButton');
+    button.textContent = newText;
+  }
+  // Inicializar o texto baseado no idioma atual do backend
+  document.addEventListener('DOMContentLoaded', () => {
+    const initialLanguage = "{{ lang }}";
+    const languageMap = {
+      "pt_BR": "Português",
+      "en": "English",
+    };
+    changeButtonText(languageMap[initialLanguage]);
+  });
+
+</script>
  
 
 
