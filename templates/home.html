@@ -24,16 +24,25 @@
         <div class="canto-direito-nav">
 
           <div class="btn-group">
-            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="languageButton"></button>
+            <img id="pathIMG" alt="bandeira" width="35"/>
+            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="languageButton">
+              <img id="pathIMG" alt="bandeira" width="20" class="ms-2"/>
+            </button>
             <ul class="dropdown-menu">
               <li>
                 <form action="{{ url_for('langs.change_language') }}" method="POST">
-                  <button type="submit" name="language" value="pt_BR" class="dropdown-item {% if g.locale == 'pt_BR' %}active{% endif %}" onclick="changeButtonText('Português')">Português</button>
+                  <button type="submit" name="language" value="pt_BR" class="dropdown-item" onclick="changeLanguage('pt_BR', 'Português', 'pt')">
+                    <img src="{{ url_for('static', filename='image/br.png') }}" alt="Flag" width="20" class="me-2" />
+                    Português
+                  </button>
                 </form>
               </li>
               <li>
                 <form action="{{ url_for('langs.change_language') }}" method="POST">
-                  <button type="submit" name="language" value="en" class="dropdown-item {% if g.locale == 'en' %}active{% endif %}" onclick="changeButtonText('English')">English</button>
+                  <button type="submit" name="language" value="en" class="dropdown-item" onclick="changeLanguage('en', 'English', 'us')">
+                    <img src="{{ url_for('static', filename='image/us.png') }}" alt="Flag" width="20" class="me-2" />
+                    English
+                  </button>
                 </form>
               </li>
             </ul>
@@ -46,23 +55,39 @@
       </nav>
 </header>
 
+
 <script>
-  // Função para alterar o texto do botão
+
   function changeButtonText(newText) {
     const button = document.getElementById('languageButton');
     button.textContent = newText;
   }
-  // Inicializar o texto baseado no idioma atual do backend
+
+  function imgButton(img){
+    const button = document.getElementById('pathIMG');
+    button.src = img;
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     const initialLanguage = "{{ lang }}";
+
     const languageMap = {
       "pt_BR": "Português",
       "en": "English",
     };
+
+    const flagMap = {
+      "pt_BR": "{{ url_for('static', filename='image/br.png') }}",  
+      "en": "{{ url_for('static', filename='image/us.png') }}", 
+    };
+
     changeButtonText(languageMap[initialLanguage]);
+    imgButton(flagMap[initialLanguage]);
   });
 
 </script>
+
+
  
 
 
