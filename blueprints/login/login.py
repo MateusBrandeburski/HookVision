@@ -9,7 +9,7 @@ login = Blueprint('login', __name__, template_folder='templates')
 @login.route('/')
 def index():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        return render_template('login/login.html')
+        return render_template('login/form_login.html')
     return redirect(url_for('tratativas.index'))
     
 # Processa o login

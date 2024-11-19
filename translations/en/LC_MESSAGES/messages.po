@@ -1,0 +1,78 @@
+# English translations for PROJECT.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-11-16 12:22-0300\n"
+"PO-Revision-Date: 2024-11-16 12:22-0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+
+msgid "sair"
+msgstr "Logout"
+
+msgid "info"
+msgstr "Informations"
+
+msgid "Transações nos últimos 30 dias"
+msgstr "Transactions in the last 30 days"
+
+msgid "Status no Sistema"
+msgstr "System Status"
+
+msgid "Buscar"
+msgstr "Search"
+
+msgid "Nenhum registro encontrado."
+msgstr "No records found."
+
+msgid "Nome"
+msgstr "Name"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Status da transação"
+msgstr "Transaction Status"
+
+msgid "Status no sistema"
+msgstr "System Status"
+
+msgid "Valor"
+msgstr "Amount"
+
+msgid "Forma de pagamento"
+msgstr "Payment Method"
+
+msgid "Parcelas"
+msgstr "Installments"
+
+msgid "Data e hora"
+msgstr "Date and Time"
+
+msgid "Anterior"
+msgstr "Previous"
+
+msgid "Próximo"
+msgstr "Next"
+
+
+msgid "desenvolvido"
+msgstr "Developed in"
+
+msgid "atualizado"
+msgstr "Updated"
+
+msgid "lang"
+msgstr "Language"

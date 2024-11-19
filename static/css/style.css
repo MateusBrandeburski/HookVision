@@ -106,3 +106,8 @@
   width: 25px;
   height: 25px;
 }
+
+.btn {
+  color: rgb(71, 71, 71);
+  font-weight: bold;
+}

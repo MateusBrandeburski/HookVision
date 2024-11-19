@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ g.locale }}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,9 +20,31 @@
             <span class="title-nav">HookVision 3.0</span>
           </a>
         </div>
+        
         <div class="canto-direito-nav">
-            <a class="fw-bold nav-link" href="{{url_for('cards.index')}}" target="_blank">Informações</a>
-            <a class="fw-bold nav-link" href="{{url_for('login.logout')}}">Logout</a>
+
+          <div class="btn-group">
+            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              Language
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <form action="{{ url_for('langs.change_language') }}" method="POST">
+                  <button type="submit" name="language" value="pt_BR" class="dropdown-item {% if g.locale == 'pt_BR' %}active{% endif %}">Português</button>
+                </form>
+              </li>
+              <li>
+                <form action="{{ url_for('langs.change_language') }}" method="POST">
+                  <button type="submit" name="language" value="en" class="dropdown-item {% if g.locale == 'en' %}active{% endif %}">English</button>
+                </form>
+              </li>
+            </ul>
+          </div>
+        
+
+            <a class="fw-bold nav-link" href="{{url_for('cards.index')}}" target="_blank">{{ _("info")}}</a>
+            <a class="fw-bold nav-link" href="{{url_for('login.logout')}}">{{_("sair")}}</a>
+
         </div> 
       </nav>
 </header>
@@ -53,6 +75,7 @@
 </footer>
 <!-- fim dp footer -->
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{ url_for('static', filename='js/graficoPagamentos.js') }}" importance="high"></script>
 <script src="{{ url_for('static', filename='js/graficoTotal.js') }}" importance="high"></script>
 <script src="{{ url_for('static', filename='js/graficoLucroPerdas.js') }}" importance="high"></script>
