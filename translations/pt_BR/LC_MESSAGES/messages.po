@@ -83,3 +83,25 @@ msgstr "Liberado"
 
 msgid "acesso_negado"
 msgstr "Negado"
+
+
+msgid "recusado"
+msgstr "Recusado"
+
+msgid "aprovado"
+msgstr "Aprovado"
+
+msgid "reembolsado"
+msgstr "Reembolsado"
+
+msgid "title_card2"
+msgstr "Faturamento e Perdas"
+
+msgid "title_card3"
+msgstr "Movimento de Transações"
+
+msgid "sub_card3"
+msgstr "Quantidade de Transações"
+
+msgid "tooltip_card3"
+msgstr "Transações"

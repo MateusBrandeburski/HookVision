@@ -84,3 +84,24 @@ msgstr "Released"
 
 msgid "acesso_negado"
 msgstr "Denied"
+
+msgid "recusado"
+msgstr "Refused"
+
+msgid "aprovado"
+msgstr "Approved"
+
+msgid "reembolsado"
+msgstr "Refunded"
+
+msgid "title_card2"
+msgstr "Billing and Losses"
+
+msgid "title_card3"
+msgstr "Transaction Movement"
+
+msgid "sub_card3"
+msgstr "Quantity of Transactions"
+
+msgid "tooltip_card3"
+msgstr "Transactions"

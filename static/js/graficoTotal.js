@@ -5,19 +5,16 @@ async function carregarDadosDoGrafico() {
 
     const dates = [];
     const valores = [];
-
-    // Aqui estamos garantindo que os dados de cada dia e o total de transações sejam corretamente extraídos
-    dados.forEach(item => {
-        // Adiciona a data convertida para timestamp (milissegundos desde a época)
-        dates.push(new Date(item.data).getTime());
-        // Adiciona o total de transações para cada data
-        valores.push(item.total); // Garantimos que estamos usando 'item.total', que contém o número de transações por dia
+    
+    dados.registros.forEach(item => { 
+        dates.push(new Date(item.data).getTime()); 
+        valores.push(item.total);
     });
 
-    // Configurações do gráfico
+
     var options = {
         series: [{
-            name: 'Transações',
+            name: dados.tooltip,
             data: valores,
         }],
         chart: {
@@ -43,7 +40,7 @@ async function carregarDadosDoGrafico() {
             size: 0,
         },
         title: {
-            text: 'Movimento de Transações',
+            text: dados.title,
             align: 'center'
         },
         fill: {
@@ -63,7 +60,7 @@ async function carregarDadosDoGrafico() {
                 },
             },
             title: {
-                text: 'Quantidade de Transações'
+                text: dados.subtitle
             },
         },
         xaxis: {

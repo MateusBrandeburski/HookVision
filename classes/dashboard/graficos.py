@@ -43,16 +43,22 @@ class Graficos:
         ).filter(func.to_timestamp(Pagamentos.data, 'DD/MM/YYYY HH24:MI') >= data_inicial)\
          .group_by(func.date(func.to_timestamp(Pagamentos.data, 'DD/MM/YYYY HH24:MI'))).all() 
         
-        resultado = []
-        
+
+        registro = []
         for row in result:
             data_formatada = row.data.strftime('%Y-%m-%d') 
-            resultado.append({
+            registro.append({
                 "data": data_formatada,
                 "total": row.quantidade_transacoes
             })
+            
+        return {
+            "title":_('title_card3'),
+            "subtitle": _('sub_card3'),
+            "tooltip":_('tooltip_card3'),
+            "registros":registro
+        }
         
-        return resultado
 
     @staticmethod
     def grafico_lucro_perdas():
@@ -65,6 +71,10 @@ class Graficos:
         ).group_by(Pagamentos.status).all()
 
         resultado = {
+            "title": _("title_card2"),
+            "label_aprov": _('aprovado'),
+            "label_reem": _('reembolsado'),
+            "label_recus": _('recusado'),
             "reembolsado": 0,
             "aprovado": 0,
             "recusado": 0
@@ -78,12 +88,8 @@ class Graficos:
             elif status == "recusado":
                 resultado["recusado"] = int(total_valor)
 
-        resultado_formatado = {
-            key: f"{value:,}".replace(",", ".")  
-            for key, value in resultado.items()
-        }
 
-        return resultado_formatado
+        return resultado
     
 
 

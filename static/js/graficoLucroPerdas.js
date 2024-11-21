@@ -1,8 +1,8 @@
 async function carregarDadosGraficoLucroPerdas() {
-    const resposta = await fetch('/grafico-lucro-perdas'); // Supondo que você tenha uma rota que retorne esses dados
+    const resposta = await fetch('/grafico-lucro-perdas'); 
     const dados = await resposta.json();
 
-    // Função para formatar os valores com separador de milhar e "K"
+
     const formatarValor = (valor) => {
         return valor.toLocaleString('pt-BR').replace(',', '.') + 'K';  // Usa o pt-BR para separador de milhar com ponto
     };
@@ -13,7 +13,7 @@ async function carregarDadosGraficoLucroPerdas() {
 
     var options = {
         series: [{
-            data: [dados.aprovado, dados.reembolsado, dados.recusado], // Dados originais sem formatação para o gráfico
+            data: [dados.aprovado, dados.reembolsado, dados.recusado], 
         }],
         chart: {
             type: 'bar',
@@ -25,9 +25,9 @@ async function carregarDadosGraficoLucroPerdas() {
         plotOptions: {
             bar: {
                 distributed: true,
-                horizontal: false, // Altera para gráfico vertical
+                horizontal: false, 
                 dataLabels: {
-                    position: 'center', // Posição das etiquetas de dados no centro das barras
+                    position: 'center', 
                 },
             }
         },
@@ -39,9 +39,9 @@ async function carregarDadosGraficoLucroPerdas() {
                 colors: ['#000']
             },
             formatter: function (val) {
-                return val.toLocaleString('pt-BR').replace(',', '.') + 'K'; // Formata os valores com separador de milhar e sufixo "K"
+                return val.toLocaleString('pt-BR').replace(',', '.') + 'K'; 
             },
-            offsetY: -10, // Ajusta a posição vertical das etiquetas
+            offsetY: -10,
             dropShadow: {
                 enabled: false
             }
@@ -51,15 +51,15 @@ async function carregarDadosGraficoLucroPerdas() {
             colors: ['#fff']
         },
         xaxis: {
-            categories: ['Aprovado', 'Reembolsado' ,'Recusado'], // Mantém as categorias no eixo x
+            categories: [dados.label_aprov, dados.label_reem , dados.label_recus], 
         },
         yaxis: {
             labels: {
-                show: true // Habilita a exibição dos rótulos no eixo y
+                show: true 
             }
         },
         title: {
-            text: 'Faturamento e Perdas',
+            text: dados.title,
             align: 'center',
             floating: true
         },
@@ -81,7 +81,7 @@ async function carregarDadosGraficoLucroPerdas() {
             }
         },
         legend: {
-            show: false // Desabilita a legenda para evitar duplicação dos rótulos
+            show: false 
         }
     };
 
