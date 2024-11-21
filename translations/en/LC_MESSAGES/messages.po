@@ -75,3 +75,12 @@ msgstr "Updated"
 
 msgid "lang"
 msgstr "Language"
+
+msgid "acesso_bloqueado"
+msgstr "Blocked"
+
+msgid "acesso_liberado"
+msgstr "Released"
+
+msgid "acesso_negado"
+msgstr "Denied"

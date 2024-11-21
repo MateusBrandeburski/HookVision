@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerar PDF</title>
+</head>
+<body>
+  <div id="laudo">
+    <h1>Laudo Médico</h1>
+    <p>Paciente: <b>Maria Silva</b></p>
+    <p>Data: <b>20/11/2024</b></p>
+    <p>Descrição: Este é um exemplo de laudo gerado em PDF.</p>
+  </div>
+
+  <button id="gerarPDF">Baixar PDF</button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    document.getElementById('gerarPDF').addEventListener('click', () => {
+      // Seleciona o elemento HTML para gerar o PDF
+      const elemento = document.getElementById('laudo');
+      
+      // Configuração do PDF
+      const opcoes = {
+        margin: 1,
+        filename: 'laudo_medico.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+
+      // Gera e baixa o PDF
+      html2pdf().set(opcoes).from(elemento).save();
+    });
+  </script>
+</body>
+</html>

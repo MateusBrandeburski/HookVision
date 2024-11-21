@@ -1,6 +1,7 @@
 from classes.database.database import Pagamentos
 from sqlalchemy import func, extract
 from datetime import timedelta, datetime
+from flask_babel import _
 
 class Graficos:
     
@@ -16,9 +17,18 @@ class Graficos:
             .filter(func.to_timestamp(Pagamentos.data, 'DD/MM/YYYY HH24:MI') >= data_inicial).count()
         
         resultado = {
-            "acesso_bloqueado": acesso_bloqueado,
-            "acesso_liberado": acesso_liberado,
-            "acesso_negado": acesso_negado
+            "acesso_bloqueado": {
+                "total": acesso_bloqueado,
+                "label": _("acesso_bloqueado")
+                },
+            "acesso_liberado": { 
+                 "total": acesso_liberado,
+                    "label": _("acesso_liberado")
+                },
+            "acesso_negado": {
+                 "total": acesso_negado,
+                 "label": _("acesso_negado")
+                },
         }
         
         return resultado

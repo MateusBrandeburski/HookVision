@@ -3,7 +3,7 @@ async function carregarDadosDoGrafico() {
   const dados = await resposta.json();
 
   const options = {
-    series: [dados.acesso_bloqueado, dados.acesso_liberado, dados.acesso_negado],
+    series: [dados.acesso_liberado.total, dados.acesso_bloqueado.total, dados.acesso_negado.total],
     chart: {
       width: 380,
       type: 'pie',
@@ -19,7 +19,7 @@ async function carregarDadosDoGrafico() {
       align: 'center',
       offsetY: 10 // Ajusta a posição vertical do subtítulo
     },
-    labels: ['Liberado', 'Bloqueado', 'Negado'],
+    labels: [dados.acesso_liberado.label, dados.acesso_bloqueado.label, dados.acesso_negado.label],
     colors: ['#28a745', '#ffc107', '#dc3545'],
     legend: {
       position: 'bottom', // Posiciona a legenda na parte inferior
