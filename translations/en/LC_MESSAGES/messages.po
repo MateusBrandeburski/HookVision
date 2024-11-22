@@ -105,3 +105,24 @@ msgstr "Quantity of Transactions"
 
 msgid "tooltip_card3"
 msgstr "Transactions"
+
+msgid "subtitle_login"
+msgstr "Webhook Payment Viewer"
+
+msgid "logout_login"
+msgstr "Logout successfully performed"
+
+msgid "senha_login"
+msgstr "Password"
+
+msgid "entrar_login"
+msgstr "Enter"
+
+msgid "cadastro_login"
+msgstr "Register"
+
+msgid "info1_title_login"
+msgstr "Start here!"
+
+msgid "info2_title_login"
+msgstr "Information about registration"

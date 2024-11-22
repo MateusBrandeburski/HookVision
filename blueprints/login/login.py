@@ -1,6 +1,7 @@
 from flask import Blueprint, session, render_template, redirect, url_for, request, flash
 from flask_bcrypt import Bcrypt
 from classes.database.database import Usuarios
+from flask_babel import _
 
 bcrypt = Bcrypt()
 login = Blueprint('login', __name__, template_folder='templates')
@@ -9,7 +10,8 @@ login = Blueprint('login', __name__, template_folder='templates')
 @login.route('/')
 def index():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        return render_template('login/form_login.html')
+        language = session.get('lang')
+        return render_template('login/form_login.html', lang=language)
     return redirect(url_for('tratativas.index'))
     
 # Processa o login
@@ -31,5 +33,5 @@ def autenticar():
 @login.route('/logout')
 def logout():
     session['usuario_logado'] = None
-    flash('Logout efetuado com sucesso')
+    # flash(_('logout_login'))
     return redirect(url_for('login.index'))

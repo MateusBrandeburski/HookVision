@@ -10,7 +10,7 @@
             {% if messages %} 
                 <ul id="messages" class="list-unstyled">
                 {% for message in messages %}
-                  {% if message == 'Logout efetuado com sucesso' %}
+                  {% if message == 'testesss' %}
                     <li class="alert alert-success">{{ message }}</li>
                   {% else %}
                     <li class="alert alert-danger">{{ message }}</li>
@@ -23,20 +23,20 @@
         <h1 class="text-white text-center">Login</h1>
         <form method="POST" action="/autenticar">
             <p class="text-white">
-              <label>Email:</label>
+              <label>Email</label>
               <input  value="mateus@proton.com" class="form-control" type="text" id="email" name="email" required>
             </p>
-            <p class="text-white"><label>Senha:</label> <input value="Developer12@" class="form-control" type="password" name="senha" required></p>
+            <p class="text-white"><label>{{_('senha_login')}}</label> <input value="Developer12@" class="form-control" type="password" name="senha" required></p>
             <div class="d-flex justify-content-between">
-              <p class="text-white"><button class="btn btn-primary" type="submit">Entrar</button></p>
-              <p class="text-white btn btn-primary"><a class="text-white" style="text-decoration: none;" href="{{url_for('cadastro.register')}}">Cadastro</a></p>
+              <p class="text-white"><button class="btn btn-primary" type="submit">{{_('entrar_login')}}</button></p>
+              <p class="text-white btn btn-primary"><a class="text-white" style="text-decoration: none;" href="{{url_for('cadastro.register')}}">{{_('cadastro_login')}}</a></p>
             </div>
 
             <div class="accordion" id="accordionExample">
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button style="font-family: 'Roboto Slab', serif;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Começe por aqui !
+                    {{_('info1_title_login')}}
                   </button>
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -56,7 +56,7 @@
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button style="font-family: 'Roboto Slab', serif;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    Informações sobre o cadastro
+                    {{_('info2_title_login')}}
                   </button>
                 </h2>
                 <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">

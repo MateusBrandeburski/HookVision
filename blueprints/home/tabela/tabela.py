@@ -4,7 +4,7 @@ from classes.dashboard.tabela import Tabela
 tratativas = Blueprint('tratativas', __name__, template_folder='template')
 
 
-#--entender o ciclo do software e por que ele recebeu o nome de tratativas? ----#
+#--entender o ciclo do software e por que ele recebeu o nome de tratativas? não lembro mais depois de 2 anos *-* ----#
 @tratativas.route('/tratativas')
 def index():
     if not session.get('usuario_logado', None):

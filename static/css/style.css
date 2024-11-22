@@ -102,12 +102,21 @@
   font-weight: bold;
 }
 
+.no-border-animation:focus, 
+.no-border-animation:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.no-border-animation {
+  transition: none !important;
+}
+
 .img-db{
   width: 25px;
   height: 25px;
 }
 
-.btn {
-  color: rgb(71, 71, 71);
+.btn-table {
   font-weight: bold;
 }
