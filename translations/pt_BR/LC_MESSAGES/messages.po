@@ -124,6 +124,15 @@ msgstr "Cadastrar"
 msgid "info1_title_login"
 msgstr "Comece por aqui!"
 
+msgid "info1_content1_login"
+msgstr "O HookVison não é apenas uma interface gráfica. Ele recebe, valida e persiste os registros de pagamentos recebidos."
+
 msgid "info2_title_login"
 msgstr "Informações sobre o cadastro"
+
+msgid "info2_content1_login"
+msgstr "O sistema de login está funcionando, use o token"
+
+msgid "info2_content2_login"
+msgstr "para criar."
 

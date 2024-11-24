@@ -1,11 +1,11 @@
 from flask import Flask, session, g, request, redirect
 from flask_babel import Babel, _
-from blueprints.webhook.pagamentos import pagamentos
-from blueprints.cadastro.cadastro import cadastro
-from blueprints.login.login import login
-from blueprints.langs.langs import langs
-from blueprints.home.tabela.tabela import tratativas
-from blueprints.home.cards.cards import cards
+from routes.webhook.pagamentos import pagamentos
+from routes.cadastro.cadastro import cadastro
+from routes.login.login import login
+from routes.langs.langs import langs
+from routes.home.tabela.tabela import tratativas
+from routes.home.cards.cards import cards
 from classes.database.database import db
 from datetime import timedelta
 from config import Config
@@ -45,4 +45,4 @@ def create_app():
 
 app = create_app()
 if __name__ == '__main__':
-    app.run( host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=False)

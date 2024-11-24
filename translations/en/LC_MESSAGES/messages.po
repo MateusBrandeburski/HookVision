@@ -124,5 +124,15 @@ msgstr "Register"
 msgid "info1_title_login"
 msgstr "Start here!"
 
+msgid "info1_content1_login"
+msgstr "HookVison is not just a graphical interface. It receives, validates and persists records of received payments."
+
 msgid "info2_title_login"
 msgstr "Information about registration"
+
+msgid "info2_content1_login"
+msgstr "Login system is working, use token"
+
+msgid "info2_content2_login"
+msgstr "to create."
+
