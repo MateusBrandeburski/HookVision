@@ -7,15 +7,13 @@ from routes.langs.langs import langs
 from routes.home.tabela.tabela import table
 from routes.home.home import home
 from routes.home.cards.cards import cards
-# from middlewares.auth_middleware import auth_middleware
+from middlewares.auth_middleware import auth_middleware
 from classes.database.database import db
 from datetime import timedelta
 from config import Config
 
 
 app = Flask(__name__, template_folder='views')
-
-
 
 
 # secret_key
@@ -34,8 +32,6 @@ def get_locale():
 babel.init_app(app, locale_selector=get_locale)
 
 
-
-
 app.register_blueprint(pagamentos)
 app.register_blueprint(cadastro)
 app.register_blueprint(langs)
@@ -45,18 +41,11 @@ app.register_blueprint(cards)
 app.register_blueprint(home)
 
 
+auth_middleware(app)
+
 def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = Config.SQLALCHEMY_DATABASE_URI
     db.init_app(app)
-    
-    # @app.before_request
-    # def check_user_authentication():
-    # #     # nos [] são o nome da route/blueprint e o nome da função que não precisa autenticação.
-    # #     if request.endpoint in ['cadastro.register']:
-    # #         return 
-    #     if 'usuario_logado' not in session or session['usuario_logado'] is None:
-    #         language = session.get('lang', 'en')
-    #         return render_template('login/form_login.html', lang=language)
     
     return app
 

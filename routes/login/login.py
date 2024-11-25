@@ -8,10 +8,9 @@ login = Blueprint('login', __name__)
 
 @login.route('/')
 def index():
-    if 'usuario_logado' not in session or session['usuario_logado'] is None:
-        language = session.get('lang', 'en')
-        return render_template('login/form_login.html', lang=language)
-    return redirect(url_for('home.index'))
+    language = session.get('lang', 'en')
+    return render_template('login/form_login.html', lang=language)
+
     
 # Processa o login
 @login.route('/autenticar', methods=['POST'])
