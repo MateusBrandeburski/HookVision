@@ -21,24 +21,24 @@
        {% endwith %}
        <!-- fim Mensagem Flash -->
        
-          <h1 class="text-white mt-5">Cadastro</h1>
+          <h1 class="text-white mt-5">{{_('cadastro')}}</h1>
           <form action="/processa-cadastro" method="POST">
     
             <p class="text-white"><label>Email</label>
                 <input type="text" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2" id="email" name="email" required></p>
     
-              <p class="text-white"><label>Senha</label>
+              <p class="text-white"><label>{{_('senha_login')}}</label>
               <input type="password" class="form-control" pattern=".{8,}$" aria-describedby="basic-addon2" id="senha" name="senha" title="8 caracteres, contendo pelo menos um dígito, uma letra minúscula, uma letra maiúscula e um caractere especial" required></span>
               </p>
     
-              <p class="text-white"><label>Confirmar senha</label>
+              <p class="text-white"><label>{{_('confirmar_senha')}}</label>
               <input class="form-control" type="password" id="confirma_senha" name="confirma_senha" required>
             
               <p class="text-white"><label>Token</label>
                 <input class="form-control" type="string" id="token" name="token" required>
                 
               <div class="col-xs-12 mt-2 text-end">
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <button type="submit" class="btn btn-primary">{{_('cadastrar')}}</button>
               </div>
           </form>
         </div>

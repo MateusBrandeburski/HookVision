@@ -1,4 +1,4 @@
-from flask import Flask, session, g, request, redirect
+from flask import Flask, session
 from flask_babel import Babel, _
 from routes.webhook.pagamentos import pagamentos
 from routes.cadastro.cadastro import cadastro
@@ -11,7 +11,7 @@ from datetime import timedelta
 from config import Config
 
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='views')
 
 # secret_key
 app.secret_key = Config.SECRET_KEY
@@ -45,4 +45,4 @@ def create_app():
 
 app = create_app()
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    app.run(host='0.0.0.0', port=5000, debug=True)

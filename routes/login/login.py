@@ -2,11 +2,12 @@ from flask import Blueprint, session, render_template, redirect, url_for, reques
 from flask_bcrypt import Bcrypt
 from classes.database.database import Usuarios
 from flask_babel import _
+import os
 
 bcrypt = Bcrypt()
-login = Blueprint('login', __name__, template_folder='views')
+login = Blueprint('login', __name__)
 
-# renderiza a página de login, verificando o session logado
+# Rota raíz, é o primiero ciclo deste serviço web.
 @login.route('/')
 def index():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:

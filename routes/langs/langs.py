@@ -1,7 +1,7 @@
 from flask import Blueprint, request, g, request, redirect, session
 
 
-langs = Blueprint('langs', __name__, template_folder='views')
+langs = Blueprint('langs', __name__, template_folder='templates')
 
 
 @langs.route('/change_language', methods=['POST'], endpoint='change_language')

@@ -8,7 +8,7 @@ import os
 
 
 bcrypt = Bcrypt()
-cadastro = Blueprint('cadastro', __name__, template_folder='views')
+cadastro = Blueprint('cadastro', __name__, template_folder='templates')
 
 # rota que renderiza a página de cadastro
 @cadastro.route('/cadastro')

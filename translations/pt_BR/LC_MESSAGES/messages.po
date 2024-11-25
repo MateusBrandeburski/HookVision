@@ -136,3 +136,11 @@ msgstr "O sistema de login está funcionando, use o token"
 msgid "info2_content2_login"
 msgstr "para criar."
 
+msgid "cadastro"
+msgstr "Cadastro"
+
+msgid "cadastrar"
+msgstr "Cadastrar"
+
+msgid "confirmar_senha"
+msgstr "Confirmar senha"

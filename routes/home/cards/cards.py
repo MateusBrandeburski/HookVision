@@ -3,7 +3,7 @@ from classes.dashboard.graficos import Graficos
 from classes.dashboard.counts import Counts
 
 
-cards = Blueprint('cards', __name__, template_folder='template')
+cards = Blueprint('cards', __name__)
 
 
 # redenderiza tabela que mostra os dados no banco de dados.
