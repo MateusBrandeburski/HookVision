@@ -1,21 +1,10 @@
 from flask import Blueprint, render_template, redirect, url_for, session, jsonify, request
 from classes.dashboard.tabela import Tabela
 
-tratativas = Blueprint('tratativas', __name__)
+table = Blueprint('table', __name__)
 
 
-#--entender o ciclo do software e por que ele recebeu o nome de tratativas? não lembro mais depois de 2 anos *-* ----#
-# @tratativas.route('/tratativas')
-# def index():
-#     if not session.get('usuario_logado', None):
-#         return redirect(url_for('login.index'))
-    
-#     language = session.get('lang')
-#     return render_template('home/dashboard/dashboard.html', lang=language)
-# #------------------------------------------------------------------#
-
-
-@tratativas.route('/table')
+@table.route('/table')
 def table_autocomplite():
     if not session.get('usuario_logado', None):
         return "Session expided - 419", 419
