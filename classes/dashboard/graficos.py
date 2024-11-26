@@ -38,10 +38,15 @@ class Graficos:
         data_inicial = datetime.now() - timedelta(days=30)
         
         result = Pagamentos.query.with_entities(
-            func.date(func.to_timestamp(Pagamentos.data, 'DD/MM/YYYY HH24:MI')).label('data'),
-            func.count(Pagamentos.id).label('quantidade_transacoes')
-        ).filter(func.to_timestamp(Pagamentos.data, 'DD/MM/YYYY HH24:MI') >= data_inicial)\
-         .group_by(func.date(func.to_timestamp(Pagamentos.data, 'DD/MM/YYYY HH24:MI'))).all() 
+        func.date(func.to_timestamp(Pagamentos.data, 'DD/MM/YYYY HH24:MI')).label('data'),
+        func.count(Pagamentos.id).label('quantidade_transacoes')
+            ).filter(
+                func.to_timestamp(Pagamentos.data, 'DD/MM/YYYY HH24:MI') >= data_inicial
+            ).group_by(
+                func.date(func.to_timestamp(Pagamentos.data, 'DD/MM/YYYY HH24:MI'))
+            ).order_by(
+                func.date(func.to_timestamp(Pagamentos.data, 'DD/MM/YYYY HH24:MI')).asc() 
+            ).all() 
         
 
         registro = []

@@ -6,6 +6,7 @@ from classes.dashboard.counts import Counts
 cards = Blueprint('cards', __name__)
 
 """Antiga rota das informações. É preciso ajustar ela para renderizar as infos."""
+
 # @cards.route('/cards')
 # def index():
 #     if not session.get('usuario_logado', None):

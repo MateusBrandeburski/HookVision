@@ -2,6 +2,7 @@ async function carregarDadosDoGrafico() {
 
     const resposta = await fetch('/grafico-total');
     const dados = await resposta.json();
+    console.log(dados);
 
     const dates = [];
     const valores = [];
