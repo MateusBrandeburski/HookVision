@@ -1,21 +1,16 @@
-from flask import Blueprint, render_template, redirect, url_for, session, flash, jsonify
+from flask import Blueprint, render_template, redirect, url_for, session, jsonify
 from classes.dashboard.graficos import Graficos
 from classes.dashboard.counts import Counts
 
 
 cards = Blueprint('cards', __name__)
 
-
-# redenderiza tabela que mostra os dados no banco de dados.
-
-#---------------------Componente----------------------------#
-@cards.route('/cards')
-def index():
-    if not session.get('usuario_logado', None):
-        return redirect(url_for('login.index'))
-    return render_template('home/cards/cards.html')
-#----------------------------------------------------------#
-
+"""Antiga rota das informações. É preciso ajustar ela para renderizar as infos."""
+# @cards.route('/cards')
+# def index():
+#     if not session.get('usuario_logado', None):
+#         return redirect(url_for('login.index'))
+#     return render_template('home/cards/cards.html')
 
 @cards.route('/grafico-status')
 def grafico_status():

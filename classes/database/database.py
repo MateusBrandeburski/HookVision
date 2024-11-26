@@ -27,6 +27,7 @@ class Pagamentos(db.Model):
 
         
 class Usuarios(db.Model):
+    
     id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String(150), unique=True)
     senha = db.Column(db.String(256), nullable=False)

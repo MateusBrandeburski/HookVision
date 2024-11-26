@@ -1,20 +1,10 @@
-from flask import Flask, session, request, render_template
+from flask import Flask, session
 from flask_babel import Babel, _
-from routes.webhook.pagamentos import pagamentos
-from routes.cadastro.cadastro import cadastro
-from routes.login.login import login
-from routes.langs.langs import langs
-from routes.home.tabela.tabela import table
-from routes.home.home import home
-from routes.home.cards.cards import cards
-from middlewares.auth_middleware import auth_middleware
 from classes.database.database import db
 from datetime import timedelta
 from config import Config
 
-
 app = Flask(__name__, template_folder='views')
-
 
 # secret_key
 app.secret_key = Config.SECRET_KEY
@@ -29,26 +19,31 @@ babel = Babel(app)
 def get_locale():
     return session.get('lang', 'en')
 
-babel.init_app(app, locale_selector=get_locale)
-
-
-app.register_blueprint(pagamentos)
-app.register_blueprint(cadastro)
-app.register_blueprint(langs)
-app.register_blueprint(login)
-app.register_blueprint(table)
-app.register_blueprint(cards)
-app.register_blueprint(home)
-
-
-auth_middleware(app)
 
 def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = Config.SQLALCHEMY_DATABASE_URI
     db.init_app(app)
     
-    return app
+    babel.init_app(app, locale_selector=get_locale)
+    """
+        Não é esteticamente lindo, mas aparentemente é mais performático. Pois só vai entrar nas classes blueprints na criação do app
+    """
+    from routes.webhook.pagamentos import pagamentos
+    app.register_blueprint(pagamentos)
+    from routes.cadastro.cadastro import cadastro
+    app.register_blueprint(cadastro)
+    from routes.login.login import login
+    app.register_blueprint(login)
+    from routes.langs.langs import langs
+    app.register_blueprint(langs)
+    from routes.home.tabela.tabela import table
+    app.register_blueprint(table)
+    from routes.home.home import home
+    app.register_blueprint(home)
+    from routes.home.cards.cards import cards
+    app.register_blueprint(cards)
 
+    return app
 
 app = create_app()
 if __name__ == '__main__':

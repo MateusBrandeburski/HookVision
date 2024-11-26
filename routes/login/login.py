@@ -8,8 +8,10 @@ login = Blueprint('login', __name__)
 
 @login.route('/')
 def index():
-    language = session.get('lang', 'en')
-    return render_template('login/form_login.html', lang=language)
+    if not session.get('usuario_logado', None):
+        language = session.get('lang', 'en')
+        return render_template('login/form_login.html', lang=language)
+    return redirect(url_for('home.index'))
 
     
 # Processa o login
@@ -19,7 +21,6 @@ def autenticar():
         email = request.form['email']
         senha = request.form['senha']
         usuario = Usuarios.query.filter_by(email=email).first()
-
         if usuario is not None and bcrypt.check_password_hash(usuario.senha, senha):   
             session['usuario_logado'] = usuario.email
             return redirect(url_for('home.index'))
@@ -31,5 +32,4 @@ def autenticar():
 @login.route('/logout')
 def logout():
     session['usuario_logado'] = None
-    # flash(_('logout_login'))
     return redirect(url_for('login.index'))

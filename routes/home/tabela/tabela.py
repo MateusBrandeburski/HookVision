@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template, redirect, url_for, session, jsonify, request
+from flask import Blueprint, session, jsonify, request
 from classes.dashboard.tabela import Tabela
+
 
 table = Blueprint('table', __name__)
 

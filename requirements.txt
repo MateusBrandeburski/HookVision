@@ -7,6 +7,7 @@ Flask==3.1.0
 flask-babel==4.0.0
 Flask-Bcrypt==1.0.1
 Flask-Bootstrap==3.3.7.1
+# Flask-Login==0.6.3
 Flask-SQLAlchemy==3.1.1
 greenlet @ git+https://github.com/python-greenlet/greenlet.git@686c208ce00d0346ba3ed5f1399cc8cd45d14688
 gunicorn==23.0.0
