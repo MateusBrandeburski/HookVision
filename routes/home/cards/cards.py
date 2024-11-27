@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, session, jsonify
+from flask import Blueprint, session, jsonify
 from classes.dashboard.graficos import Graficos
 from classes.dashboard.counts import Counts
 

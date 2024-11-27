@@ -1,27 +1,24 @@
-# Use an appropriate base image for 32-bit systems
-FROM i386/python:3.8
+# Usar uma imagem base do Python
+FROM python:3.11-slim
 
-# Install necessary system dependencies
-RUN apt-get update && apt-get install -y \
+# Configurar o diretório de trabalho
+WORKDIR /app
+
+# Copiar os arquivos necessários para o contêiner
+COPY . /app
+
+# Instalar dependências do sistema
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
-    libffi-dev \
-    libssl-dev \
-    curl \
+    libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Rust (required for compiling bcrypt)
-# Note: The installation commands below are based on the standard rustup installation
-# and might need adjustments for the specific architecture or OS version.
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-ENV PATH="/root/.cargo/bin:${PATH}"
+# Instalar as dependências do Python
+COPY requirements.txt .
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Update pip and setuptools
-RUN pip install --upgrade pip setuptools
-
-# Rest of your Dockerfile
-WORKDIR /app
-COPY . /app
-RUN pip install --no-cache-dir -r requirements.txt
+# Expor a porta 5000 para o Flask
 EXPOSE 5000
-ENV NAME World
+
+# Comando padrão para iniciar o Gunicorn
 CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
